@@ -31,13 +31,22 @@ btn.addEventListener("click", ()=>{
 const scrollRevealOption={
     distance: '50px',
     origin: 'bottom',
-    duration: 1800
+    duration: 1700
+}
+const scrollReveal={
+  distance : '50px',
+  origin : 'left',
+  duration : 2000
+
 }
 
 ScrollReveal().reveal('.heroimg', scrollRevealOption);
 ScrollReveal().reveal('.hero-text', scrollRevealOption);
 ScrollReveal().reveal('.sec-text', scrollRevealOption);
 ScrollReveal().reveal('.uploadbtn', scrollRevealOption);
+ScrollReveal().reveal('.topic', scrollReveal);
+ScrollReveal().reveal('.maths', scrollReveal);
+
 
 
 
