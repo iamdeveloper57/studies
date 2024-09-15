@@ -63,19 +63,15 @@ ScrollReveal().reveal(".maths", scrollReveal);
 
 const video = document.getElementById("video");
 
-// Promise.all([
-//   faceapi.nets.tnyFaceDetector.loadFromUrl('')
-// ])
+// function startVideo() {
+//   navigator.getUserMedia(
+//     { video: {} },
+//     (stream) => (video.srcObject = stream),
+//     (err) => console.error(err)
+//   );
+// }
 
-function startVideo() {
-  navigator.getUserMedia(
-    { video: {} },
-    (stream) => (video.srcObject = stream),
-    (err) => console.error(err)
-  );
-}
-
-startVideo();
+// startVideo();
 
 
 
