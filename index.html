@@ -20,7 +20,8 @@
 <section class="sec-sec">
 <h1 class="sec-text">Share your topic with your <u style="color: rgb(77, 170, 139);">Friends.</u></h1>
 <div class="upload">
-<button class="uploadbtn">Upload topic.</button>
+    <input type="file" accept="image/*" style="display: none;" id="fileInput">
+<button class="uploadbtn" id="uploadbtn">Upload topic.</button>
 </div>
 </section>
 
@@ -34,7 +35,16 @@
 
 </section>
 
+<section class="post">
+<div>
+    <video id="video" width="720" height="560" autoplay muted></video>
+
+</div>
+</section>
+
+
 <script src="https://unpkg.com/scrollreveal"></script>  
     <script src="script.js" type="module"></script>
+    
 </body>
 </html>
