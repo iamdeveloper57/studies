@@ -79,43 +79,43 @@ startVideo();
 
 
 
-import * as fp from './node_modules/fingerpose/dist/fingerpose.js';
-// import * as fp from './node_modules/fingerpose';
+// import * as fp from './node_modules/fingerpose/dist/fingerpose.js';
+// // import * as fp from './node_modules/fingerpose';
 
-async function main() {
-  const video = document.createElement("video");
-  video.width = 640;
-  video.height = 480;
-  document.body.appendChild(video);
+// async function main() {
+//   const video = document.createElement("video");
+//   video.width = 640;
+//   video.height = 480;
+//   document.body.appendChild(video);
 
-  const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-  video.srcObject = stream;
-  await video.play();
+//   const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+//   video.srcObject = stream;
+//   await video.play();
 
-  const model = await handpose.load();
-  const GE = new fp.GestureEstimator([
-    fp.Gestures.VictoryGesture,
-    fp.Gestures.ThumbsUpGesture,
-  ]);
+//   const model = await handpose.load();
+//   const GE = new fp.GestureEstimator([
+//     fp.Gestures.VictoryGesture,
+//     fp.Gestures.ThumbsUpGesture,
+//   ]);
 
-  video.addEventListener("loadeddata", async () => {
-    const detect = async () => {
-      const predictions = await model.estimateHands(video, true);
-      if (predictions.length > 0) {
-        const estimatedGestures = GE.estimate(predictions[0].landmarks, 8.5);
-        if (estimatedGestures.gestures.length > 0) {
-          const gesture = estimatedGestures.gestures[0].name;
-          if (gesture === "thumbs_up") {
-            window.scrollBy(0, -100); // Scroll up
-          } else if (gesture === "victory") {
-            window.scrollBy(0, 100); // Scroll down
-          }
-        }
-      }
-      requestAnimationFrame(detect);
-    };
-    detect();
-  });
-}
+//   video.addEventListener("loadeddata", async () => {
+//     const detect = async () => {
+//       const predictions = await model.estimateHands(video, true);
+//       if (predictions.length > 0) {
+//         const estimatedGestures = GE.estimate(predictions[0].landmarks, 8.5);
+//         if (estimatedGestures.gestures.length > 0) {
+//           const gesture = estimatedGestures.gestures[0].name;
+//           if (gesture === "thumbs_up") {
+//             window.scrollBy(0, -100); // Scroll up
+//           } else if (gesture === "victory") {
+//             window.scrollBy(0, 100); // Scroll down
+//           }
+//         }
+//       }
+//       requestAnimationFrame(detect);
+//     };
+//     detect();
+//   });
+// }
 
-main();
+// main();
