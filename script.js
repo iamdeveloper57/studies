@@ -1,58 +1,153 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js";
-import {
-  getStorage,
-  ref,
-  uploadBytes,
-  getDownloadURL,
-} from "https://www.gstatic.com/firebasejs/10.13.1/firebase-storage.js";
-import {
-  getFirestore,
-  collection,
-  addDoc,
-  getDocs,
-} from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
-
-// Your web app's Firebase configuration
+import {getStorage,ref,uploadBytes,getDownloadURL,listAll} from "https://www.gstatic.com/firebasejs/10.13.1/firebase-storage.js";
+import {getFirestore,collection,addDoc, getDocs,} from "https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore.js";
+import {getAuth,signInAnonymously,onAuthStateChanged,} from "https://www.gstatic.com/firebasejs/10.13.1/firebase-auth.js";
+// Your web app's FC 
 const firebaseConfig = {
-  apiKey: "AIzaSyAIgqX-mmVGRe67fhOaZixUUWJEFG5EPyc",
-  authDomain: "studies-972a4.firebaseapp.com",
-  projectId: "studies-972a4",
-  storageBucket: "studies-972a4.appspot.com",
-  messagingSenderId: "588930545350",
-  appId: "1:588930545350:web:5ed62bdd8667362a2a89c7",
+apiKey: "AIzaSyAIgqX-mmVGRe67fhOaZixUUWJEFG5EPyc",
+authDomain: "studies-972a4.firebaseapp.com",
+projectId: "studies-972a4",
+storageBucket: "studies-972a4.appspot.com",
+messagingSenderId: "588930545350",
+appId: "1:588930545350:web:5ed62bdd8667362a2a89c7",
 };
-
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const storage = getStorage(app);
 const db = getFirestore(app);
+const auth = getAuth(app);
+
+// Sign in anonymously
+signInAnonymously(auth)
+  .then(() => {
+    console.log("Signed in anonymously");
+  })
+  .catch((error) => {
+    console.error("Error signing in anonymously", error);
+  });
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    console.log("User is signed in:", user.uid);
+  } else {
+    console.log("No user is signed in");
+  }
+});
 
 let btn = document.querySelector(".uploadbtn");
 let input = document.querySelector("#fileInput");
+
 btn.addEventListener("click", () => {
+  // console.log("Button clicked");
   input.click();
 });
 
-//Animation
+input.addEventListener("change", (event) => {
+  const file = event.target.files[0];
+  if (file) {
+    // console.log("File selected:", file.name);
+    const storageRef = ref(storage, 'uploads/' + file.name);
+    uploadBytes(storageRef, file).then((snapshot) => {
+      // console.log('Uploaded a blob or file!', snapshot);
+      getDownloadURL(snapshot.ref).then((downloadURL) => {
+        console.log('File available at', downloadURL);
+      });
+    }).catch((error) => {
+      console.error('Upload failed', error);
+    });
+  } else {
+    console.log("No file selected");
+  }
+});
 
+
+// Reference to the directory in Firebase Storage
+const listRef = ref(storage, 'uploads/');
+
+// Get the images container
+const imagesContainer = document.getElementById('imagesContainer');
+
+// List all files in the directory
+listAll(listRef)
+  .then((res) => {
+    res.items.forEach((itemRef) => {
+      // Get the download URL for each file
+      getDownloadURL(itemRef)
+        .then((url) => {
+          // Create an img element and set its src attribute
+          const img = document.createElement('img');
+          img.src = url;
+          img.alt = itemRef.name;
+          img.style.width = '400px';
+          imagesContainer.appendChild(img);
+          img.classList.add("center")
+        })
+        .catch((error) => {
+          console.error('Error fetching image URL:', error);
+        });
+    });
+  })
+  .catch((error) => {
+    console.error('Error listing files:', error);
+  });
+
+
+
+//Animation
 const scrollRevealOption = {
-  distance: "50px",
-  origin: "top",
+  distance: "100px",
+  origin: "bottom",
   duration: 1400,
-  // easing: 'cubic-bezier(0.50, -0.45, 0.20, 1.45)',
   opacity: 0,
   scale: 0.9,
   reset: true,
   mobile: true,
-  // rotate: { x: 10, y: 0, z: 10 },
   viewFactor: 0.2,
+  easing: 'ease-in-out',
 };
+
+const scrollRevealStaggered = {
+  distance: "50px",
+  origin: "left",
+  duration: 2000,
+  delay: 200,
+  easing: 'ease-in-out',
+};
+
+const elementsToReveal = [
+  ".heroimg",
+  ".hero-text",
+  ".sec-text",
+  ".uploadbtn"
+];
+
+elementsToReveal.forEach((selector, index) => {
+  ScrollReveal().reveal(selector, { ...scrollRevealOption, delay: index * 100 });
+});
+
+ScrollReveal().reveal(".topic", scrollRevealStaggered);
+ScrollReveal().reveal(".maths", { ...scrollRevealStaggered, origin: "right" });
+
+
+
+
+// const scrollRevealOption = {
+//   distance: "100px",
+//   origin: "bottom",
+//   duration: 1400,
+//   opacity: 0,
+//   scale: 0.9,
+//   reset: true,
+//   mobile: true,
+//   viewFactor: 0.2,
+// };
 const scrollReveal = {
   distance: "50px",
   origin: "bottom",
   duration: 2000,
 };
+
 
 ScrollReveal().reveal(".heroimg", scrollRevealOption);
 ScrollReveal().reveal(".hero-text", scrollRevealOption);
@@ -70,50 +165,3 @@ const video = document.getElementById("video");
 //     (err) => console.error(err)
 //   );
 // }
-
-// startVideo();
-
-
-import * as fp from './node_modules/fingerpose/dist/fingerpose.js';
-
-async function main() {
-  try {
-    const video = document.createElement("video");
-    video.width = 640;
-    video.height = 480;
-    document.body.appendChild(video);
-
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-    video.srcObject = stream;
-    await video.play();
-
-    const model = await handpose.load();
-    const GE = new fp.GestureEstimator([
-      fp.Gestures.VictoryGesture,
-      fp.Gestures.ThumbsUpGesture,
-    ]);
-
-    video.addEventListener("loadeddata", async () => {
-      const detect = async () => {
-        const predictions = await model.estimateHands(video, true);
-        if (predictions.length > 0) {
-          const estimatedGestures = GE.estimate(predictions[0].landmarks, 8.5);
-          if (estimatedGestures.gestures.length > 0) {
-            const gesture = estimatedGestures.gestures[0].name;
-            if (gesture === "thumbs_up") {
-              window.scrollBy(0, -100); // Scroll up
-            } else if (gesture === "victory") {
-              window.scrollBy(0, 100); // Scroll down
-            }
-          }
-        }
-        requestAnimationFrame(detect);
-      };
-      detect();
-    });
-  } catch (error) {
-    console.error("An error occurred:", error);
-  }
-}
-
-main();
