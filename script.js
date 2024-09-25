@@ -34,7 +34,6 @@ onAuthStateChanged(auth, (user) => {
 });
 let btn = document.querySelector(".uploadbtn"); let input = document.querySelector("#fileInput");
 btn.addEventListener("click", () => {
-  // console.log("Button clicked");
   input.click();
 });
 input.addEventListener("change", (event) => {
