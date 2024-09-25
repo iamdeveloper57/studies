@@ -78,7 +78,7 @@ listAll(listRef)
 const img = document.createElement('img');
 img.src = url;
 img.alt = itemRef.name;
-img.style.width = '400px';
+img.style.width = '350px';
 imagesContainer.appendChild(img);
 img.classList.add("center")}).catch((error) => {console.error('Error fetching image URL:', error);});});}).catch((error) => {console.error('Error listing files:', error);});
 //Animation
