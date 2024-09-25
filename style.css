@@ -85,7 +85,7 @@ h1{
 display: flex;
 justify-content: center;
 align-items: center;
-height: 100vh; width: 100vw; overflow: hidden;
+height: auto;
 flex-wrap: wrap; box-sizing: border-box;}
 #imagesContainer h2{margin: 5px 0 5px 0;}
 #imagesContainer img{margin: 10px 0 25px 0;}
