@@ -47,11 +47,21 @@ input.addEventListener("change", (event) => {
       // console.log('Uploaded a blob or file!', snapshot);
       btn.innerHTML = "uploading..."
       getDownloadURL(snapshot.ref).then((downloadURL) => {
-        btn.innerHTML = "Uploaded"
+        btn.innerHTML = "Uploaded";
+//set the url in local storage
+localStorage.setItem("img", downloadURL)
+//display the img
+let img = document.createElement("img");
+img.src = downloadURL; 
+img.style.width = "400px";
+const imgupload = document.getElementById("uploadimg");
+imgupload.appendChild(img)
         setTimeout(function (){
 btn.innerHTML = "upload Image"
-        },3000)
-    console.log('File available at', downloadURL);});}).catch((error) => {console.error('Upload failed', error);});} else {console.log("No file selected");}});
+        },2500)
+});}).catch((error) => {console.error('Upload failed', error);});} else {console.log("No file selected");}});
+
+
 // Reference to the directory in Firebase Storage
 const listRef = ref(storage, 'uploads/');
 // Get the images container
@@ -72,7 +82,7 @@ img.style.width = '400px';
 imagesContainer.appendChild(img);
 img.classList.add("center")}).catch((error) => {console.error('Error fetching image URL:', error);});});}).catch((error) => {console.error('Error listing files:', error);});
 //Animation
-const scrollRevealOption = {distance: "100px",origin: "bottom",duration: 1400,opacity: 0,scale: 0.9,reset: false,mobile: true,viewFactor: 0.2,easing: 'ease-in-out',};
+const scrollRevealOption = {distance: "100px",origin: "bottom",duration: 1400,opacity: 0,scale: 0.9,reset: true,mobile: true,viewFactor: 0.2,easing: 'ease-in-out',};
 const scrollRevealStaggered = {
   distance: "50px",
   origin: "left",
@@ -80,15 +90,15 @@ const scrollRevealStaggered = {
   delay: 200,
   easing: 'ease-in-out',
 };
-const elementsToReveal = [
-  ".heroimg",
-  ".hero-text",
-  ".sec-text",
-  ".uploadbtn"
-];
-elementsToReveal.forEach((selector, index) => {
-  ScrollReveal().reveal(selector, { ...scrollRevealOption, delay: index * 100 });
-});
+// const elementsToReveal = [
+//   ".heroimg",
+//   ".hero-text",
+//   ".sec-text",
+//   ".uploadbtn"
+// ];
+// elementsToReveal.forEach((selector, index) => {
+//   ScrollReveal().reveal(selector, { ...scrollRevealOption, delay: index * 100 });
+// });
 ScrollReveal().reveal(".topic", scrollRevealStaggered);
 ScrollReveal().reveal(".maths", { ...scrollRevealStaggered, origin: "right" });
 const scrollReveal = {
