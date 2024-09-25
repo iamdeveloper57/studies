@@ -86,7 +86,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 height: 100vh;
-flex-wrap: wrap;}
+flex-wrap: wrap; padding: 15px;}
 #imagesContainer h2{margin: 5px 0 5px 0;}
 #imagesContainer img{margin: 10px 0 25px 0;}
 .center{
