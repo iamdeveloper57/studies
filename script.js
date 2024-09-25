@@ -53,7 +53,7 @@ localStorage.setItem("img", downloadURL)
 //display the img
 let img = document.createElement("img");
 img.src = downloadURL; 
-img.style.width = "350px";
+img.style.width = "370px";
 const imgupload = document.getElementById("uploadimg");
 imgupload.appendChild(img)
         setTimeout(function (){
@@ -78,7 +78,7 @@ listAll(listRef)
 const img = document.createElement('img');
 img.src = url;
 img.alt = itemRef.name;
-img.style.width = '350px';
+img.style.width = '370px';
 imagesContainer.appendChild(img);
 img.classList.add("center")}).catch((error) => {console.error('Error fetching image URL:', error);});});}).catch((error) => {console.error('Error listing files:', error);});
 //Animation
