@@ -53,7 +53,7 @@ localStorage.setItem("img", downloadURL)
 //display the img
 let img = document.createElement("img");
 img.src = downloadURL; 
-img.style.width = "400px";
+img.style.width = "350px";
 const imgupload = document.getElementById("uploadimg");
 imgupload.appendChild(img)
         setTimeout(function (){
