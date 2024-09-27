@@ -51,6 +51,7 @@ input.addEventListener("change", (event) => {
 localStorage.setItem("img", downloadURL)
 //display the img
 let img = document.createElement("img");
+img.classList.add("img");
 img.src = downloadURL; 
 img.style.width = "370px";
 const imgupload = document.getElementById("uploadimg");

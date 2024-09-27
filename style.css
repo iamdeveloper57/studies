@@ -90,7 +90,17 @@ align-items: center;
 height: auto;
 flex-wrap: wrap; box-sizing: border-box;}
 #imagesContainer h2{margin: 5px 0 5px 0;}
-#imagesContainer img{margin: 10px 0 25px 0;}
+#imagesContainer img{margin: 10px 0 25px 0;
+    width: 370px; /* Set a fixed width */
+    height: auto; /* Maintain aspect ratio */
+    border: 2px solid #ccc; /* Light border */
+    border-radius: 8px; /* Rounded corners */
+    transition: transform 0.2s, box-shadow 0.2s linear; 
+}
+#imagesContainer img:hover{
+    transform: scale(1.05); /* Slightly enlarge the image */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+}
 .center{
 display: block;
 margin-left: auto;
@@ -104,8 +114,27 @@ width: 50%;}
     background-color: rgb(0, 0, .9);
     z-index: 9999;
 }
-.imagebox{
+/* Styles for the image container */
+.imagebox {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; 
+    gap: 10px; 
+    margin-top: 20px; 
+  }
+  
+  /* Styles for individual images */
+  .imagebox img, .img{
+    width: 370px; 
     height: auto;
-    width: auto;
-
-}
+    border: 2px solid #ccc; 
+    border-radius: 8px; 
+    transition: transform 0.2s, box-shadow 0.2s linear; 
+  }
+  
+  /* Hover effect */
+  .imagebox img:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+  }
+  
