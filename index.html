@@ -25,20 +25,44 @@
 </div>
 </section>
 
-<section class="third">
+<!-- <section class="third">
 <h1 class="topic">Topics</h1>
 
 <div class="posts">
     <p>C.Maths</p> <br>
 <img src="Maths-Formulas-3.png" width="100%" alt="maths formula" class="maths">
 </div>
-</section>
+</section> -->
 <div id="imagesContainer">
     <h2>Notes</h2>
     <div id="uploadimg"></div>
 </div>
 
 <script src="https://unpkg.com/scrollreveal"></script>  
+<script>
+    //Animation
+const scrollRevealOption = {distance: "100px",origin: "bottom",duration: 1400,opacity: 0,scale: 0.9,reset: true,mobile: true,viewFactor: 0.2,easing: 'ease-in-out',};
+const scrollRevealStaggered = {
+  distance: "50px",
+  origin: "left",
+  duration: 2000,
+  delay: 200,
+  easing: 'ease-in-out',
+};
+ScrollReveal().reveal(".topic", scrollRevealStaggered);
+ScrollReveal().reveal(".maths", { ...scrollRevealStaggered, origin: "right" });
+const scrollReveal = {
+  distance: "50px",
+  origin: "bottom",
+  duration: 2000,
+};
+ScrollReveal().reveal(".heroimg", scrollRevealOption);
+ScrollReveal().reveal(".hero-text", scrollRevealOption);
+ScrollReveal().reveal(".sec-text", scrollRevealOption);
+ScrollReveal().reveal(".uploadbtn", scrollRevealOption);
+ScrollReveal().reveal(".topic", scrollReveal);
+ScrollReveal().reveal(".maths", scrollReveal);
+</script>
     <script src="script.js" type="module"></script> 
     
 </body>

@@ -65,6 +65,9 @@ btn.innerHTML = "upload Image"
 const listRef = ref(storage, 'uploads/');
 // Get the images container
 const imagesContainer = document.getElementById('imagesContainer');
+const imagebox = document.createElement('div');
+imagesContainer.appendChild(imagebox);
+imagebox.classList.add("imagebox");
 // List all files in the directory
 listAll(listRef)
   .then((res) => {
@@ -78,36 +81,5 @@ const img = document.createElement('img');
 img.src = url;
 img.alt = itemRef.name;
 img.style.width = '370px';
-imagesContainer.appendChild(img);
+imagebox.appendChild(img);
 img.classList.add("center")}).catch((error) => {console.error('Error fetching image URL:', error);});});}).catch((error) => {console.error('Error listing files:', error);});
-//Animation
-const scrollRevealOption = {distance: "100px",origin: "bottom",duration: 1400,opacity: 0,scale: 0.9,reset: true,mobile: true,viewFactor: 0.2,easing: 'ease-in-out',};
-const scrollRevealStaggered = {
-  distance: "50px",
-  origin: "left",
-  duration: 2000,
-  delay: 200,
-  easing: 'ease-in-out',
-};
-// const elementsToReveal = [
-//   ".heroimg",
-//   ".hero-text",
-//   ".sec-text",
-//   ".uploadbtn"
-// ];
-// elementsToReveal.forEach((selector, index) => {
-//   ScrollReveal().reveal(selector, { ...scrollRevealOption, delay: index * 100 });
-// });
-ScrollReveal().reveal(".topic", scrollRevealStaggered);
-ScrollReveal().reveal(".maths", { ...scrollRevealStaggered, origin: "right" });
-const scrollReveal = {
-  distance: "50px",
-  origin: "bottom",
-  duration: 2000,
-};
-ScrollReveal().reveal(".heroimg", scrollRevealOption);
-ScrollReveal().reveal(".hero-text", scrollRevealOption);
-ScrollReveal().reveal(".sec-text", scrollRevealOption);
-ScrollReveal().reveal(".uploadbtn", scrollRevealOption);
-ScrollReveal().reveal(".topic", scrollReveal);
-ScrollReveal().reveal(".maths", scrollReveal);
