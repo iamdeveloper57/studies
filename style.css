@@ -69,51 +69,44 @@ h1 {
 }
  /* for tablet computer and big screen*/
 @media (min-width: 500px) {
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
     .bg {
         height: 70vh;
+        background-image: url("hero.png");
+        background-repeat: no-repeat;
+        background-position: right;
+        background-size: calc(50% - 50px);
+        position: relative;
+        padding: 100px;
     }
-
+    .sec-sec{
+        left: 85px;
+        top: 200px;
+        position: absolute;
+    }
     .heroimg {
         margin: 180px auto auto;
-    }
-    .footer{
-        position: relative;
-        background-color: #dadada;
-        height: 50vh;
-        width: 100%;
-        padding: 20px;
-    }
-}
-@media (min-width: 601px) {
-    .bg{
-       background-color: #eeecec;
-       
-    }
-    .heroimg{
-        background-image: url("creative.jpg");
-       background-repeat: no-repeat;
-       background-position: right;
-       /* background-size: calc(100%-50px); */
-       border-radius: 10px;
     }
     .hero-text h1{
         text-align: left;
     }
-    .heroimg img{
-        display: none;
-    }
-    .footer{
+    .footer {
         position: relative;
         background-color: #dadada;
         height: 50vh;
         width: 100%;
         padding: 20px;
+    }
+
+    .pcbg {
+        display: block;
+        height: 45vh;
+        width: 100%;
+    }
+}
+
+@media (min-width: 601px) {
+    .heroimg img {
+        display: none;
     }
 }
 /* for mobile */
@@ -125,8 +118,18 @@ h1 {
     .heroimg {
         margin-top: 150px auto auto;
     }
+    .footer{
+        position: relative;
+        background-color: #dadada;
+        height: 50vh;
+        width: 100%;
+        padding: 20px;
+        border-top-right-radius: 350px;
+    }
 }
-
+.pcbg{
+    display: none;
+}
 #imagesContainer,
 #imgupload {
     display: flex;
@@ -204,14 +207,6 @@ h1 {
 }
 
 /* footer */
-.footer{
-    position: relative;
-    background-color: #dadada;
-    height: 50vh;
-    width: 100%;
-    padding: 20px;
-    border-top-right-radius: 350px;
-}
 .footer .text{
     font-size: 26px;
     font-weight: 700;
