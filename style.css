@@ -1,29 +1,33 @@
-*{
+* {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.bg{
+.bg {
     height: 57vh;
     background-color: rgb(220, 240, 233);
     border-bottom-right-radius: 65px;
     position: relative;
 }
-.sec-sec{
+
+.sec-sec {
     height: 43vh;
 }
-.hero-text{
+
+.hero-text {
     height: auto;
     width: 100%;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-h1{
+
+h1 {
     text-align: center;
-   padding: 50px;
+    padding: 50px;
 }
-.heroimg{
+
+.heroimg {
     height: 200px;
     width: 100%;
     position: absolute;
@@ -31,14 +35,16 @@ h1{
     margin-top: 210px;
     padding: 0 15px 0 15px;
     filter: drop-shadow(10px 10px 10px rgba(0, 0, 0, 0.4));
-      
+
 }
-.upload{
+
+.upload {
     display: flex;
     align-items: center;
     justify-content: center;
 }
-.uploadbtn{
+
+.uploadbtn {
     width: 110px;
     height: 40px;
     color: black;
@@ -50,91 +56,179 @@ h1{
     font-weight: 600;
     box-shadow: 0 5px 10px rgb(0, 0, 0, 0.2);
 }
-.third{
+
+.third {
     height: 100vh;
     width: 100vw;
     background-color: rgb(243, 248, 252);
 }
-.posts{
+
+.posts {
     height: 50vh;
     padding: 10px;
 }
-@media (min-width: 600px) {
-    *{
+ /* for tablet computer and big screen*/
+@media (min-width: 500px) {
+    * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
     }
-    .bg{
+
+    .bg {
         height: 70vh;
     }
-    .heroimg{
+
+    .heroimg {
         margin: 180px auto auto;
-        height: auto;
-        width: 80%;
+    }
+    .footer{
+        position: relative;
+        background-color: #dadada;
+        height: 50vh;
+        width: 100%;
+        padding: 20px;
+    }
+}
+@media (min-width: 601px) {
+    .bg{
+       background-color: #eeecec;
+       
+    }
+    .heroimg{
+        background-image: url("creative.jpg");
+       background-repeat: no-repeat;
+       background-position: right;
+       /* background-size: calc(100%-50px); */
+       border-radius: 10px;
+    }
+    .hero-text h1{
+        text-align: left;
+    }
+    .heroimg img{
+        display: none;
+    }
+    .footer{
+        position: relative;
+        background-color: #dadada;
+        height: 50vh;
+        width: 100%;
+        padding: 20px;
+    }
+}
+/* for mobile */
+@media (max-width : 700px) {
+    .bg {
+        height: 60vh;
+    }
+
+    .heroimg {
+        margin-top: 150px auto auto;
     }
 }
 
-@media (max-width : 600px) {
-    .bg{
-        height: 60vh;
-    }
-    .heroimg{
-     margin-top: 150px;   
-    }
+#imagesContainer,
+#imgupload {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    flex-wrap: wrap;
+    box-sizing: border-box;
 }
-#imagesContainer, #imgupload{
-display: flex;
-justify-content: center;
-align-items: center;
-height: auto;
-flex-wrap: wrap; box-sizing: border-box;}
-#imagesContainer h2{margin: 5px 0 5px 0;}
-#imagesContainer img{margin: 10px 0 25px 0;
-    width: 370px; /* Set a fixed width */
-    height: auto; /* Maintain aspect ratio */
-    border: 2px solid #ccc; /* Light border */
-    border-radius: 8px; /* Rounded corners */
-    transition: transform 0.2s, box-shadow 0.2s linear; 
+
+#imagesContainer h2 {
+    margin: 5px 0 5px 0;
 }
-#imagesContainer img:hover{
-    transform: scale(1.05); /* Slightly enlarge the image */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
+
+#imagesContainer img {
+    margin: 10px 0 25px 0;
+    width: 370px;
+    /* Set a fixed width */
+    height: auto;
+    /* Maintain aspect ratio */
+    border: 2px solid #ccc;
+    /* Light border */
+    border-radius: 8px;
+    /* Rounded corners */
+    transition: transform 0.2s, box-shadow 0.2s linear;
 }
-.center{
-display: block;
-margin-left: auto;
-margin-right: auto;
-width: 50%;}
-.popup{
+
+#imagesContainer img:hover {
+    transform: scale(1.05);
+    /* Slightly enlarge the image */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    /* Add shadow on hover */
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.popup {
     position: fixed;
-    top: 0;left: 0;
+    top: 0;
+    left: 0;
     width: 50%;
     height: 50%;
     background-color: rgb(0, 0, .9);
     z-index: 9999;
 }
+
 /* Styles for the image container */
 .imagebox {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; 
-    gap: 10px; 
-    margin-top: 20px; 
-  }
-  
-  /* Styles for individual images */
-  .imagebox img, .img{
-    width: 370px; 
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* Styles for individual images */
+.imagebox img,
+.img {
+    width: 370px;
     height: auto;
-    border: 2px solid #ccc; 
-    border-radius: 8px; 
-    transition: transform 0.2s, box-shadow 0.2s linear; 
-  }
-  
-  /* Hover effect */
-  .imagebox img:hover {
-    transform: scale(1.05); 
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
-  }
-  
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    transition: transform 0.2s, box-shadow 0.2s linear;
+}
+
+/* Hover effect */
+.imagebox img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* footer */
+.footer{
+    position: relative;
+    background-color: #dadada;
+    height: 50vh;
+    width: 100%;
+    padding: 20px;
+    border-top-right-radius: 350px;
+}
+.footer .text{
+    font-size: 26px;
+    font-weight: 700;
+    text-align: left;
+    margin: 70px 0 0 0;
+    color: black
+}
+.copyright{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 18px;
+}
+.companyname{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin: 18px;
+    font-weight: 300;
+}

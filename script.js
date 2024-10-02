@@ -61,7 +61,7 @@ btn.innerHTML = "upload Image"
         },2500)
 });}).catch((error) => {console.error('Upload failed', error);});} else {console.log("No file selected");}});
 
-
+setTimeout(()=>{
 // Reference to the directory in Firebase Storage
 const listRef = ref(storage, 'uploads/');
 // Get the images container
@@ -84,3 +84,4 @@ img.alt = itemRef.name;
 img.style.width = '370px';
 imagebox.appendChild(img);
 img.classList.add("center")}).catch((error) => {console.error('Error fetching image URL:', error);});});}).catch((error) => {console.error('Error listing files:', error);});
+      }, 1500)
